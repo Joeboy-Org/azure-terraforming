@@ -42,7 +42,7 @@ jobs:
 
       - name: Terraform Init
         working-directory: ${{ inputs.WORKSPACE }}
-        run: terraform init -backend-config=env/${{ inputs.TF_ENVIRONMENT }}/backend.tfvars
+        run: terraform init -backend-config=env/${{ inputs.TF_ENVIRONMENT }}/${{ inputs.TF_ENVIRONMENT }}-backend.tfvars
 
       - name: Terraform Plan
         env:
@@ -93,7 +93,7 @@ jobs:
 
       - name: Terraform Init
         working-directory: ${{ inputs.WORKSPACE }}
-        run: terraform init -backend-config=env/${{ inputs.TF_ENVIRONMENT }}/backend.tfvars
+        run: terraform init -backend-config=env/${{ inputs.TF_ENVIRONMENT }}/${{ inputs.TF_ENVIRONMENT }}-backend.tfvars
 
       - name: Download tfplan from Azure Blob Storage
         working-directory: ${{ inputs.WORKSPACE }}
