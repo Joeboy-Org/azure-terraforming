@@ -54,8 +54,8 @@ jobs:
         working-directory: ${{ inputs.WORKSPACE }}
         run: |
             az storage blob upload \
-                --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \ #stao1mh5twyj
-                --container-name ${{ secrets.AZURE_CONTAINER_NAME }} \ #tfplandev
+                --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
+                --container-name ${{ secrets.AZURE_CONTAINER_NAME }} \
                 --name ${{ inputs.TF_ENVIRONMENT }}-terraform-plan-${{ github.run_id }} \
                 --file ${{ inputs.TF_ENVIRONMENT }}-terraform-plan-${{ github.run_id }} \
                 --auth-mode login
