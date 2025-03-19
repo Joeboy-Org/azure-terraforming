@@ -4,7 +4,7 @@ on:
     inputs:
       GH_ENVIRONMENT:
         type: choice
-        description: 'What environment would you like to create a terraform state for?'
+        description: 'What github environment would you like to create a terraform state for?'
         required: true
         default: 'development'
         options:
@@ -12,12 +12,12 @@ on:
           - production
       TF_ENVIRONMENT:
         type: choice
-        description: 'What environment would you like to create a terraform state for?'
+        description: 'What terraform environment would you like to create a terraform state for?'
         required: true
-        default: 'development'
+        default: 'dev'
         options:
-          - development
-          - production
+          - dev
+          - prod
 
 jobs:
   TfStateDeploy:
