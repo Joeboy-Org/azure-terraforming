@@ -85,8 +85,8 @@ jobs:
         working-directory: ${{ inputs.WORKSPACE }}
         run: terraform init
 
-      - name: Terraform Plan
+      - name: Terraform Apply
         env:
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         working-directory: ${{ inputs.WORKSPACE }}
-        run: terraform apply -input=false -var-file=env/${{ inputs.TF_ENVIRONMENT }}/${{ inputs.TF_ENVIRONMENT }}.tfvars
+        run: terraform apply -input=false -var-file=env/${{ inputs.TF_ENVIRONMENT }}/${{ inputs.TF_ENVIRONMENT }}.tfvars --auto-approve
