@@ -1,0 +1,33 @@
+name: 'Azure Deployment'
+on:
+  push:
+    branches:
+      - main
+  pull_request: 
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  #######
+  # Dev #
+  #######
+  DevTerraformCheck:
+    name: Terraform Deployment
+    if: github.event_name == 'pull_request'
+    uses: ./.github/workflows/check-terraform.yml
+    secrets: inherit
+    with:
+      GH_ENVIRONMENT: development
+      TF_ENVIRONMENT: dev
+      WORKSPACE: ./terraform_azure_resources
+  
+  DevTerraformDeployment:
+    name: Dev AMI Deployment
+    if: github.event_name == 'push' && github.ref_name == 'main'
+    uses: ./.github/workflows/tf-apply.yml
+    secrets: inherit
+    with:
+      GH_ENVIRONMENT: development
+      TF_ENVIRONMENT: dev
+      WORKSPACE: ./terraform_azure_resources

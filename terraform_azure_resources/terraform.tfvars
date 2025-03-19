@@ -1,2 +1,2 @@
 primary_location = "australiaeast"
-# application_name = "observability"
+application_name = "observability"
