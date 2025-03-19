@@ -41,7 +41,7 @@ jobs:
     #       terraform_version: ${{ vars.TERRAFORM_VERSION }}
 
       - name: Terraform Init
-        working-directory: ./terraform
+        working-directory: ${{ inputs.WORKSPACE }}
         run: terraform init
 
       - name: Terraform Plan
@@ -80,7 +80,7 @@ jobs:
     #       terraform_version: ${{ vars.TERRAFORM_VERSION }}
 
       - name: Terraform Init
-        working-directory: ./terraform
+        working-directory: ${{ inputs.WORKSPACE }}
         run: terraform init
 
       - name: Terraform Plan
