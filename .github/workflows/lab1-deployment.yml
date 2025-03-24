@@ -22,7 +22,7 @@ jobs:
   
   Lab1DevTerraformDeployment:
     name: Terraform Lab1 Dev Deployment
-    needs: ["Lab1TFCheck"]
+    needs: ["Lab1TFCheck"] #test
     if: github.event_name == 'workflow_run'
     uses: ./.github/workflows/tf-apply.yml
     secrets: inherit
