@@ -10,7 +10,7 @@ on:
 
 jobs:
   #######
-  # Dev #
+  # Terraform_Azure_Resources Dev #
   #######
   DevTerraformCheck:
     name: Terraform Deployment
@@ -31,3 +31,74 @@ jobs:
       GH_ENVIRONMENT: development
       TF_ENVIRONMENT: dev
       WORKSPACE: ./terraform_azure_resources
+  #######
+  # Lab1 Dev #
+  #######
+  Lab1TFCheck:
+    name: Terraform Deployment
+    if: github.event_name == 'pull_request'
+    uses: ./.github/workflows/check-terraform.yml
+    secrets: inherit
+    with:
+      GH_ENVIRONMENT: development
+      TF_ENVIRONMENT: dev
+      WORKSPACE: ./lab1
+  
+  Lab1DevTerraformDeployment:
+    name: Dev AMI Deployment
+    needs: ["DevTerraformDeployment"]
+    if: github.event_name == 'push' && github.ref_name == 'main'
+    uses: ./.github/workflows/tf-apply.yml
+    secrets: inherit
+    with:
+      GH_ENVIRONMENT: development
+      TF_ENVIRONMENT: dev
+      WORKSPACE: ./lab1
+
+  #######
+  # Lab2 Dev #
+  #######
+  Lab2TFCheck:
+    name: Terraform Deployment
+    if: github.event_name == 'pull_request'
+    uses: ./.github/workflows/check-terraform.yml
+    secrets: inherit
+    with:
+      GH_ENVIRONMENT: development
+      TF_ENVIRONMENT: dev
+      WORKSPACE: ./lab2
+  
+  Lab2DevTerraformDeployment:
+    name: Dev AMI Deployment
+    needs: ["Lab1DevTerraformDeployment"]
+    if: github.event_name == 'push' && github.ref_name == 'main'
+    uses: ./.github/workflows/tf-apply.yml
+    secrets: inherit
+    with:
+      GH_ENVIRONMENT: development
+      TF_ENVIRONMENT: dev
+      WORKSPACE: ./lab2
+
+  #######
+  # Lab3 Dev #
+  #######
+  Lab3TFCheck:
+    name: Terraform Deployment
+    if: github.event_name == 'pull_request'
+    uses: ./.github/workflows/check-terraform.yml
+    secrets: inherit
+    with:
+      GH_ENVIRONMENT: development
+      TF_ENVIRONMENT: dev
+      WORKSPACE: ./lab3
+  
+  Lab3DevTerraformDeployment:
+    name: Dev AMI Deployment
+    needs: ["Lab2DevTerraformDeployment"]
+    if: github.event_name == 'push' && github.ref_name == 'main'
+    uses: ./.github/workflows/tf-apply.yml
+    secrets: inherit
+    with:
+      GH_ENVIRONMENT: development
+      TF_ENVIRONMENT: dev
+      WORKSPACE: ./lab3
