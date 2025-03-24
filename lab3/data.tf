@@ -5,6 +5,6 @@ data "azurerm_subnet" "bravo" {
 }
 
 data "azurerm_key_vault" "main" {
-  name                = "kv-devops-dev-zonmjj"
+  name                = "kv-devops-dev-nd27dx"
   resource_group_name = "rg-devops-dev"
 }
