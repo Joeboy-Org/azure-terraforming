@@ -50,7 +50,7 @@ jobs:
         working-directory: ${{ inputs.WORKSPACE }}
         run: terraform plan -input=false -var-file=env/${{ inputs.TF_ENVIRONMENT }}/${{ inputs.TF_ENVIRONMENT }}.tfvars -out=${{ inputs.TF_ENVIRONMENT }}-terraform-plan-${{ github.run_id }}
 
-      - name: Upload file to Azure Blob Storage
+      - name: Upload file to Azure Blob Storage #--overwrite
         working-directory: ${{ inputs.WORKSPACE }}
         run: |
             az storage blob upload \
