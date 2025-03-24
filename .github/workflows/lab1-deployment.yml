@@ -12,7 +12,7 @@ jobs:
   #######
   Lab1TFCheck:
     name: Terraform Lab1 Dev Check
-    if: github.event_name == 'workflow_run'
+    if: github.event_name == 'workflow_run' && github.ref_name == 'create-tf-resource'
     uses: ./.github/workflows/check-terraform.yml
     secrets: inherit
     with:
@@ -22,8 +22,7 @@ jobs:
   
   Lab1DevTerraformDeployment:
     name: Terraform Lab1 Dev Deployment
-    needs: ["Lab1TFCheck"] #test
-    if: github.event_name == 'workflow_run'
+    if: github.event_name == 'workflow_run' && github.ref_name == 'main'
     uses: ./.github/workflows/tf-apply.yml
     secrets: inherit
     with:
