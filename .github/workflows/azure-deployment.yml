@@ -21,6 +21,7 @@ jobs:
       GH_ENVIRONMENT: development
       TF_ENVIRONMENT: dev
       WORKSPACE: ./terraform_azure_resources
+      TF_PLAN: true
   
   DevTerraformDeployment:
     name: Terraform Azure Resources Dev Deployment
