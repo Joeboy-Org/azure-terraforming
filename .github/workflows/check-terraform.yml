@@ -11,6 +11,9 @@ on:
             WORKSPACE:
                 required: true
                 type: string
+            TF_PLAN:
+              required: true
+              type: boolean
   
 permissions:
     id-token: write
@@ -102,6 +105,7 @@ jobs:
 
     tfPlan:
         name: Terraform - ${{ inputs.GH_ENVIRONMENT }}
+        if: ${{ inputs.TF_PLAN }}
         uses: ./.github/workflows/tf-plan.yml
         secrets: inherit
         with:

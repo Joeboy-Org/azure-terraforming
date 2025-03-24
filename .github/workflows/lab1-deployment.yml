@@ -10,23 +10,21 @@ jobs:
   #######
   # Lab1 Dev #
   #######
-  #######
-  # Lab1 Dev #
-  #######
   Lab1TFCheck:
     name: Terraform Lab1 Dev Check
-    if: github.event_name == 'pull_request' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'create-tf-resource'
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
     uses: ./.github/workflows/check-terraform.yml
     secrets: inherit
     with:
       GH_ENVIRONMENT: development
       TF_ENVIRONMENT: dev
       WORKSPACE: ./lab1
+      TF_PLAN: false
   
   Lab1DevTerraformDeployment:
     name: Terraform Lab1 Dev Deployment
-    # needs: ["Lab1TFCheck"] 
-    if: github.event_name == 'push' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
+    needs: ["Lab1TFCheck"] 
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
     uses: ./.github/workflows/tf-apply.yml
     secrets: inherit
     with:
