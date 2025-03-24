@@ -18,11 +18,12 @@ resource "azurerm_key_vault" "main" {
   tenant_id                 = data.azurerm_client_config.current.tenant_id
   sku_name                  = "standard"
   enable_rbac_authorization = true
+  purge_protection_enabled  = false
 }
 
 resource "azurerm_monitor_diagnostic_setting" "main" {
-  name               = "diag-${var.application_name}-${var.environment_name}-${random_string.keyvault_suffix.result}"
-  target_resource_id = azurerm_key_vault.main.id
+  name                       = "diag-${var.application_name}-${var.environment_name}-${random_string.keyvault_suffix.result}"
+  target_resource_id         = azurerm_key_vault.main.id
   log_analytics_workspace_id = data.azurerm_log_analytics_workspace.observability.id
 
   enabled_log {

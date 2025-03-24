@@ -10,6 +10,6 @@ variable "primary_location" {
   type = string
 }
 
-variable "base_address_space" {
-  type = string
-}
+# variable "base_address_space" {
+#   type = string
+# }

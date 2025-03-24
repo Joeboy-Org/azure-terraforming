@@ -1,0 +1,35 @@
+# name: 'Lab3 Deployment'
+# on:
+#   push:
+#     branches:
+#       - main
+#   pull_request: 
+#     branches:
+#       - main
+#     paths:
+#       - 'lab3/**'
+#   workflow_dispatch:
+
+# jobs:
+#   #######
+#   # Lab3 Dev #
+#   #######
+#   Lab3TFCheck:
+#     name: Terraform Lab3 Dev Check
+#     if: github.event_name == 'pull_request'
+#     uses: ./.github/workflows/check-terraform.yml
+#     secrets: inherit
+#     with:
+#       GH_ENVIRONMENT: development
+#       TF_ENVIRONMENT: dev
+#       WORKSPACE: ./lab3
+  
+#   Lab3DevTerraformDeployment:
+#     name: Terraform Lab3 Dev Deployment
+#     if: github.event_name == 'push' && github.ref_name == 'main'
+#     uses: ./.github/workflows/tf-apply.yml
+#     secrets: inherit
+#     with:
+#       GH_ENVIRONMENT: development
+#       TF_ENVIRONMENT: dev
+#       WORKSPACE: ./lab3

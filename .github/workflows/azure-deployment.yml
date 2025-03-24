@@ -10,10 +10,10 @@ on:
 
 jobs:
   #######
-  # Dev #
+  # Terraform_Azure_Resources Dev #
   #######
   DevTerraformCheck:
-    name: Terraform Deployment
+    name: Terraform Azure Resources Dev Check
     if: github.event_name == 'pull_request'
     uses: ./.github/workflows/check-terraform.yml
     secrets: inherit
@@ -23,7 +23,7 @@ jobs:
       WORKSPACE: ./terraform_azure_resources
   
   DevTerraformDeployment:
-    name: Dev AMI Deployment
+    name: Terraform Azure Resources Dev Deployment
     if: github.event_name == 'push' && github.ref_name == 'main'
     uses: ./.github/workflows/tf-apply.yml
     secrets: inherit
