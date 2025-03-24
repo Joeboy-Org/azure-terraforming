@@ -15,7 +15,7 @@ jobs:
   #######
   Lab1TFCheck:
     name: Terraform Lab1 Dev Check
-    if: github.event_name == 'pull_request' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main'
+    if: github.event_name == 'pull_request' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'create-tf-resource'
     uses: ./.github/workflows/check-terraform.yml
     secrets: inherit
     with:
