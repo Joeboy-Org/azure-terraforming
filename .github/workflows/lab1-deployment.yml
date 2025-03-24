@@ -1,17 +1,9 @@
 name: 'Lab1 Deployment'
 on:   
-#   push:
-#     branches:
-#       - main
-#   pull_request: 
-#     branches:
-#       - main
-#     paths:
-#       - 'lab1/**'
   workflow_run:
-    workflows: ["Azure Deployment"]  # Name of the workflow to watch
+    workflows: ["Azure Deployment"]
     types:
-      - completed  # Runs when the "Build" workflow completes
+      - completed
   workflow_dispatch:
 
 jobs:
@@ -30,6 +22,7 @@ jobs:
   
   Lab1DevTerraformDeployment:
     name: Terraform Lab1 Dev Deployment
+    needs: ["Lab1TFCheck"]
     if: github.event_name == 'workflow_run'
     uses: ./.github/workflows/tf-apply.yml
     secrets: inherit
